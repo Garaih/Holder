@@ -23,6 +23,6 @@ public class CameraController : MonoBehaviour
 
         transform.LookAt(target);
         target.rotation = Quaternion.Euler(mouseY, mouseX, 0);
-
+        player.rotation = Quaternion.Euler(0, mouseX, 0);
     }
 }

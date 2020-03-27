@@ -43,10 +43,7 @@ public class PlayerMovement : MonoBehaviour
         xInput = Input.GetAxis("Horizontal");
         zInput = Input.GetAxis("Vertical");
 
-        if (isGrounded)
-        {
-            moveDirection = transform.right * xInput + transform.forward * zInput;
-        }
+        moveDirection = camTarget.right * xInput + camTarget.forward * zInput;
 
         if (xInput == 0 && zInput == 0)
         {
@@ -62,7 +59,11 @@ public class PlayerMovement : MonoBehaviour
 
         if(xInput != 0 || zInput != 0)
         {
-            transform.rotation = Quaternion.Euler(0, camScript.mouseX, 0);
+            Vector3 newDirection = Vector3.RotateTowards(transform.forward, moveDirection, 360 * Time.deltaTime, 0.0f);
+
+            transform.rotation = Quaternion.LookRotation(newDirection);
+
+            //transform.rotation = Quaternion.Euler(transform.rotation.x, newDirection.y, transform.rotation.z);
         }
 
         if (Input.GetButtonDown("Jump") && isGrounded)
