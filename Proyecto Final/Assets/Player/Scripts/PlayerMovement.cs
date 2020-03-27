@@ -23,12 +23,15 @@ public class PlayerMovement : MonoBehaviour
     public Transform camTarget;
     public CameraController camScript;
 
+    [Header("Aim and Weapons")]
+    public bool aiming;
+
     float xInput, zInput;
     Vector3 moveDirection;
 
     void Start()
     {
-
+        aiming = false;
     }
 
     void Update()
